@@ -50,12 +50,12 @@ for item in items:
     if score.text != "25点/25点満点" and score.text !="得点":
         element = item.find_element_by_css_selector('#content-study > div.table-resp.table-unit-list > div:nth-child(9) > div.table-resp-col.col-unitname > div > inputs')
         element.click()
-    #if score.text != "25点/25点満点" and score.text !="得点":
-        #driver.implicitly_wait(2)
-        #element = item.find_element_by_class_name("col-study")
-        #loc = element.location
-        #x, y = loc['x'], loc['y']
-        #actions = ActionChains(driver)
-        #actions.move_by_offset(x, y)
-        #actions.click()
-        #actions.perform()
+    if score.text != "25点/25点満点" and score.text !="得点":
+        driver.implicitly_wait(2)
+        element = item.find_element_by_class_name("col-study")
+        loc = element.location
+        x, y = loc['x'], loc['y']
+        actions = ActionChains(driver)
+        actions.move_by_offset(x, y)
+        actions.click()
+        actions.perform()
