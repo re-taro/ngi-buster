@@ -49,10 +49,12 @@ def select_unit(unitnumber):
     try:
         driver.execute_script(unit)
         sleep(2)
-        driver.save_screenshot('jikken.png')
+        driver.save_screenshot('jikken.png')#test
     except:
         driver.quit()
         sys.exit()
+
+def 
 
 
 if __name__ == '__main__':
