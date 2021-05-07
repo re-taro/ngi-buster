@@ -69,7 +69,7 @@ if __name__ == '__main__':
         else:
             break
     while True:
-        unitnumber = input('ユニットの最初の数字を入力してください: ')
+        unitnumber = int(input('ユニットの最初の数字を入力してください: '))
         if unitnumber % 25 == 1:
             break
         else:
