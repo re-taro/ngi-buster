@@ -49,7 +49,6 @@ def select_unit(unitnumber):
     try:
         driver.execute_script(unit)
         sleep(2)
-        driver.save_screenshot('jikken.png')#test
     except:
         driver.quit()
         sys.exit()
@@ -65,6 +64,7 @@ def ans_trans(ans, ques):
     sleep(1)
     tl_jp = '#ow634 > div.J0lOec > span.VIiyi > span > span'
     guess = driver.find_element_by_css_selector(tl_jp).text
+    driver.save_screenshot('jikken.png')#test
     driver.switch_to_window(driver.window_handles[0])
     for i, answer in enumerate(ans):
         ans_text = answer.get_attribute('value')
@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 driver.quit()
                 sys.exit()
             else:
-                print('ログインに失敗しました、再度ログインし直してください。')
+                pass
         else:
             break
     while True:
@@ -94,4 +94,3 @@ if __name__ == '__main__':
             break
         else:
             print('数字が違うぞもう一回入力してください。')
-    select_unit(unitnumber)
