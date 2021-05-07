@@ -10,13 +10,13 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 
 options = Options()
-options.add_argument('--disable-gpu');
-options.add_argument('--disable-extensions');
-options.add_argument('--proxy-server="direct://"');
-options.add_argument('--proxy-bypass-list=*');
-options.add_argument('--start-maximized');
+options.add_argument('--disable-gpu')
+options.add_argument('--disable-extensions')
+options.add_argument('--proxy-server="direct://"')
+options.add_argument('--proxy-bypass-list=*')
+options.add_argument('--start-maximized')
 
-driver = webdriver.Chrome(executable_path='D:\Webdriver\chromedriver.exe' ,chrome_options=options)
+driver = webdriver.Chrome(executable_path='D:\\Webdriver\\chromedriver.exe' ,chrome_options=options)
 
 url ='https://w5.linguaporta.jp/user/seibido/'
 driver.get(url)
