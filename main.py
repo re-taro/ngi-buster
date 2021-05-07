@@ -5,7 +5,7 @@ import sys
 
 
 #selenium初期設定
-driver_path = '/app/.chromedriver/bin/chromedriver'
+driver_path = '/usr/bin/chromedriver'
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
@@ -34,13 +34,18 @@ def login():
         element = driver.find_element_by_css_selector(study)
         element.click()
         sleep(2)
+        cocet = '#content-study > form > div > div:nth-child(2) > div.table-resp-col.study-col-button > input'
+        element = driver.find_element_by_css_selector(cocet)
+        element.click()
+        sleep(2)
+        driver.save_screenshot('jikken.png')
     except:
         pass
     else:
         raise ValueError('Invalid password or username')
 
-def select_unit():
-    a
+#def select_unit():
+#    a
 
 
 if __name__ == '__main__':
