@@ -38,14 +38,21 @@ def login():
         element = driver.find_element_by_css_selector(cocet)
         element.click()
         sleep(2)
-        driver.save_screenshot('jikken.png')
     except:
         pass
     else:
         raise ValueError('Invalid password or username')
 
-#def select_unit():
-#    a
+def select_unit(unitnumber):
+    unitnumber = (unitnumber - 1) / 25 + 1
+    unit = "select_unit('drill', '" + str(1813 + (unitnumber - 1) * 4) + "', '');"
+    try:
+        driver.execute_script(unit)
+        sleep(2)
+        driver.save_screenshot('jikken.png')
+    except:
+        driver.quit()
+        sys.exit()
 
 
 if __name__ == '__main__':
@@ -61,3 +68,10 @@ if __name__ == '__main__':
                 print('ログインに失敗しました、再度ログインし直してください。')
         else:
             break
+    while True:
+        unitnumber = input('ユニットの最初の数字を入力してください: ')
+        if unitnumber % 25 == 1:
+            break
+        else:
+            print('数字が違うぞもう一回入力してください。')
+    select_unit(unitnumber)
