@@ -136,6 +136,20 @@ if __name__ == '__main__':
         if unitnumber % 25 == 1:
             break
         else:
-            print('数字が違うぞもう一回入力してください。')
+            print('番号が違うぞもう一回入力してください。')
     while True:
         end_unitnumber = int (input('終了する番号を入力してください: '))
+        if end_unitnumber % 25 == 0:
+            break
+        else:
+            print('番号が違うぞもう一回入力してください。')
+    while True:
+        print('現在のユニット: ', str(unitnumber) + '-' + str(unitnumber + 24))
+        select_unit(unitnumber)
+        Answer()
+        if unitnumber >= (end_unitnumber - 24):
+            break
+        unitnumber += 25
+    print('回答が終わりました。プログラムを終了します。')
+    driver.quit()
+    sys.exit()
