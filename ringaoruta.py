@@ -47,8 +47,7 @@ items = driver.find_elements_by_class_name("table-resp-row")
 for item in items:
     score = item.find_element_by_class_name("col-points")
     print(score.text)
-    #ここから下は学習ボタンクリックの残骸(要変更)
     if score.text != "25点/25点満点" and score.text !="得点":
-        element = item.find_element_by_css_selector('#content-study > div.table-resp.table-unit-list > div:nth-child(9) > div.table-resp-col.col-unitname > div > inputs')
+        element = item.find_element_by_css_selector("#content-study > div.table-resp.table-unit-list > div:nth-child(2) > div.table-resp-col.col-unitname > div > input[type='button']")
         element.click()
 
