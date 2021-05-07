@@ -54,7 +54,25 @@ def select_unit(unitnumber):
         driver.quit()
         sys.exit()
 
-def 
+def ans_trans(ans, ques):
+    driver.execute_script("window.open()")
+    sleep(1)
+    driver.switch_to_window(driver.window_handles[1])
+    driver.get('https://translate.google.co.jp/?hl=ja&sl=en&tl=ja&op=translate')
+    sl_en = '#yDmH0d > c-wiz > div > div.WFnNle > c-wiz > div.OlSOob > c-wiz > div.ccvoYb > div.AxqVh > div.OPPzxe > c-wiz.rm1UF.UnxENd > span > span > div > textarea'
+    element = driver.find_element_by_css_selector(sl_en)
+    element.send_keys(ques.text)
+    sleep(1)
+    tl_jp = '#ow634 > div.J0lOec > span.VIiyi > span > span'
+    guess = driver.find_element_by_css_selector(tl_jp).text
+    driver.switch_to_window(driver.window_handles[0])
+    for i, answer in enumerate(ans):
+        ans_text = answer.get_attribute('value')
+        if ans_text in guess or guess in ans_text:
+            return i
+    return -1
+
+
 
 
 if __name__ == '__main__':
