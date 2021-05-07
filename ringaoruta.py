@@ -29,7 +29,7 @@ element.send_keys('r02i16')
 password = '#content-login > form > table > tbody > tr:nth-child(2) > td > input[type=password]'
 element = driver.find_element_by_css_selector(password)
 
-element.send_keys('1UY57vrt')
+element.send_keys('G2GR2TrV')
 
 login = '#btn-login'
 element = driver.find_element_by_css_selector(login)
