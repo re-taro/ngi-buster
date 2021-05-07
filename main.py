@@ -15,6 +15,7 @@ driver = webdriver.Chrome(options = options, executable_path = driver_path)
 driver.get('https://w5.linguaporta.jp/user/seibido/index.php')
 
 
+#接続
 def login():
     try:
         usrname = '#content-login > form > table > tbody > tr:nth-child(1) > td > input[type=text]'
@@ -43,6 +44,7 @@ def login():
     else:
         raise ValueError('Invalid password or username')
 
+#ユニットを選ぶ
 def select_unit(unitnumber):
     unitnumber = (unitnumber - 1) / 25 + 1
     unit = "select_unit('drill', '" + str(1813 + (unitnumber - 1) * 4) + "', '');"
@@ -53,6 +55,7 @@ def select_unit(unitnumber):
         driver.quit()
         sys.exit()
 
+#翻訳して答えを返す
 def ans_trans(ans, ques):
     driver.execute_script("window.open()")
     sleep(1)
@@ -72,6 +75,46 @@ def ans_trans(ans, ques):
             return i
     return -1
 
+#回答する
+def Answer():
+    while True:
+        sleep(2)
+        try:
+            question = '#qu02'
+            ques = driver.find_element_by_css_selector(question)
+        except:
+            print('このユニットは既に完了しています。')
+            break
+        ans = []
+        ans_0 = '#answer_0_0'
+        ans.append(driver.find_element_by_css_selector(ans_0))
+        ans_1 = '#answer_0_1'
+        ans.append(driver.find_element_by_css_selector(ans_1))
+        ans_2 = '#answer_0_2'
+        ans.append(driver.find_element_by_css_selector(ans_2))
+        ans_3 = '#answer_0_3'
+        ans.append(driver.find_element_by_css_selector(ans_3))
+        ans_4 = '#answer_0_4'
+        ans.append(driver.find_element_by_css_selector(ans_4))
+        choose = ans_trans(ans, ques)
+        if choose == -1:
+            ans[0].click()
+        else:
+            ans[choose].click()
+        submit = '#under_area > form > input.btn.btn-problem-next.form_font_size'
+        driver.find_element_by_css_selector(submit).submit()
+        sleep(2)
+        try:
+            true_msg = '#true_msg'
+            driver.find_element_by_css_selector(true_msg)
+            print('正解')
+        except:
+            print('不正解')
+        try:
+            next_btn = '#under_area > form > input.btn.btn-problem-next.form_font_size'
+            driver.find_element_by_css_selector(next_btn)
+        except:
+            break
 
 
 
@@ -89,8 +132,10 @@ if __name__ == '__main__':
         else:
             break
     while True:
-        unitnumber = int(input('ユニットの最初の数字を入力してください: '))
+        unitnumber = int(input('ユニットの最初の番号を入力してください: '))
         if unitnumber % 25 == 1:
             break
         else:
             print('数字が違うぞもう一回入力してください。')
+    while True:
+        end_unitnumber = int (input('終了する番号を入力してください: '))
