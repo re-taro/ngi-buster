@@ -60,6 +60,7 @@ def select_unit(unitnumber):
 def ans_trans(ans, ques):
     translator = Translator()
     guess = translator.translate(ques.text, dest = 'ja').text
+    print('翻訳結果は ',guess)
     for i, answer in enumerate(ans):
         ans_text = answer.get_attribute('value')
         if ans_text in guess or guess in ans_text:
@@ -100,6 +101,7 @@ def Answer():
         except:
             print('このユニットは既に完了しています。')
             break
+        print('問題:', ques.text)
         ans = []
         ans_0 = 'answer_0_0'
         ans.append(driver.find_element_by_id(ans_0))
@@ -111,16 +113,25 @@ def Answer():
         ans.append(driver.find_element_by_id(ans_3))
         ans_4 = 'answer_0_4'
         ans.append(driver.find_element_by_id(ans_4))
+        print('選択肢: {}, {}, {}, {}, {}'.format(ans[0].get_attribute('value'),
+                                                ans[1].get_attribute('value'),
+                                                ans[2].get_attribute('value'),
+                                                ans[3].get_attribute('value'), 
+                                                ans[4].get_attribute('value')))
         if ques.text not in memo:
             memo = mk_memo(ans, ques, memo)
             choose = ans_trans(ans, ques)
             if choose == -1:
+                print('答えは ', ans[0].get_attribute('value'))
                 ans[0].click()
             else:
+                print('答えは ', ans[choose].get_attribute('value'))
                 ans[choose].click()
         else:
             memo = update_memo(ans, ques, memo)
+            print('検索 ',memo[ques.text])
             choose = ans_memo(ans, ques, memo)
+            print('答えは ',ans[choose].get_attribute('value'))
             ans[choose].click()
             memo[ques.text].remove(ans[choose].get_attribute('value'))
         submit = '#ans_submit'
@@ -134,7 +145,7 @@ def Answer():
             print('不正解')
         try:
             next_btn = '#under_area > form > input[type=hidden]:nth-child(2)'
-            driver.find_element_by_css_selector(next_btn)
+            driver.find_element_by_css_selector(next_btn).submit()
         except:
             break
 
