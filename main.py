@@ -100,6 +100,7 @@ def Answer():
             ques = driver.find_element_by_css_selector(question)
         except:
             print('このユニットは既に完了しています。')
+            driver.back()
             break
         print('問題:', ques.text)
         ans = []
