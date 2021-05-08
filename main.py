@@ -101,16 +101,16 @@ def Answer():
             print('このユニットは既に完了しています。')
             break
         ans = []
-        ans_0 = '#answer_0_0'
-        ans.append(driver.find_element_by_css_selector(ans_0))
-        ans_1 = '#answer_0_1'
-        ans.append(driver.find_element_by_css_selector(ans_1))
-        ans_2 = '#answer_0_2'
-        ans.append(driver.find_element_by_css_selector(ans_2))
-        ans_3 = '#answer_0_3'
-        ans.append(driver.find_element_by_css_selector(ans_3))
-        ans_4 = '#answer_0_4'
-        ans.append(driver.find_element_by_css_selector(ans_4))
+        ans_0 = 'answer_0_0'
+        ans.append(driver.find_element_by_id(ans_0))
+        ans_1 = 'answer_0_1'
+        ans.append(driver.find_element_by_id(ans_1))
+        ans_2 = 'answer_0_2'
+        ans.append(driver.find_element_by_id(ans_2))
+        ans_3 = 'answer_0_3'
+        ans.append(driver.find_element_by_id(ans_3))
+        ans_4 = 'answer_0_4'
+        ans.append(driver.find_element_by_id(ans_4))
         if ques.text not in memo:
             memo = mk_memo(ans, ques, memo)
             choose = ans_trans(ans, ques)
@@ -123,7 +123,7 @@ def Answer():
             choose = ans_memo(ans, ques, memo)
             ans[choose].click()
             memo[ques.text].remove(ans[choose].get_attribute('value'))
-        submit = '#under_area > form > input.btn.btn-problem-next.form_font_size'
+        submit = '#ans_submit'
         driver.find_element_by_css_selector(submit).submit()
         sleep(2)
         try:
@@ -133,7 +133,7 @@ def Answer():
         except:
             print('不正解')
         try:
-            next_btn = '#under_area > form > input.btn.btn-problem-next.form_font_size'
+            next_btn = '#under_area > form > input[type=hidden]:nth-child(2)'
             driver.find_element_by_css_selector(next_btn)
         except:
             break
