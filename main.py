@@ -75,6 +75,29 @@ def ans_trans(ans, ques):
             return i
     return -1
 
+#記憶機能の作成
+def mk_memo(ans, ques, memo):
+    for answer in ans:
+        memo.setdefault(ques.text, []).append(answer.get_attribute('value'))
+    return memo
+
+#記録する処理
+def update_memo(ans, ques, memo):
+    tmp = []
+    for answer in ans:
+        ans_text = answer.get_attribute('value')
+        if ans_text in memo[ques.text]:
+            tmp.append(ans_text)
+    memo[ques.text] = tmp
+    return memo
+
+#memoから回答する
+def ans_memo(ans, ques, memo):
+    for i, answer in enumerate(ans):
+        ans_text = answer.get_attribute('value')
+        if ans_text in memo[ques.text]:
+            return i
+
 #回答する
 def Answer():
     while True:
