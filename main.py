@@ -100,6 +100,7 @@ def ans_memo(ans, ques, memo):
 
 #回答する
 def Answer():
+    memo = {}
     while True:
         sleep(2)
         try:
@@ -119,11 +120,18 @@ def Answer():
         ans.append(driver.find_element_by_css_selector(ans_3))
         ans_4 = '#answer_0_4'
         ans.append(driver.find_element_by_css_selector(ans_4))
-        choose = ans_trans(ans, ques)
-        if choose == -1:
-            ans[0].click()
+        if ques.text not in memo:
+            memo = mk_memo(ans, ques, memo)
+            choose = ans_trans(ans, ques)
+            if choose == -1:
+                ans[0].click()
+            else:
+                ans[choose].click()
         else:
+            memo = update_memo(ans, ques, memo)
+            choose = ans_memo(ans, ques, memo)
             ans[choose].click()
+            memo[ques.text].remove(ans[choose].get_attribute('value'))
         submit = '#under_area > form > input.btn.btn-problem-next.form_font_size'
         driver.find_element_by_css_selector(submit).submit()
         sleep(2)
