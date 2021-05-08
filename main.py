@@ -147,6 +147,8 @@ def Answer():
             next_btn = '#under_area > form > input[type=hidden]:nth-child(2)'
             driver.find_element_by_css_selector(next_btn).submit()
         except:
+            fin_btn = '#question_td > form:nth-child(4) > input.btn.btn-return.btn-return-units'
+            driver.find_element_by_css_selector(fin_btn).submit()
             break
 
 
