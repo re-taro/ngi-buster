@@ -101,6 +101,11 @@ def Answer():
             ques = driver.find_element_by_css_selector(question)
         except:
             print('このユニットは既に完了しています。')
+            return_btn = '#menu > ul > li:nth-child(2) > form > input[type=hidden]:nth-child(2)'
+            driver.find_element_by_css_selector(return_btn).submit()
+            cocet = '#content-study > form > div > div:nth-child(2) > div.table-resp-col.study-col-button > input'
+            element = driver.find_element_by_css_selector(cocet)
+            element.click()
             break
         print('問題:', ques.text)
         ans = []
