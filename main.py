@@ -14,6 +14,7 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(options = options, executable_path = driver_path)
 driver.get('https://w5.linguaporta.jp/user/seibido/index.php')
+driver.set_window_size(1920, 1080)
 
 
 #接続
@@ -100,7 +101,6 @@ def Answer():
             ques = driver.find_element_by_css_selector(question)
         except:
             print('このユニットは既に完了しています。')
-            driver.back()
             break
         print('問題:', ques.text)
         ans = []
@@ -145,9 +145,11 @@ def Answer():
         except:
             print('不正解')
         try:
+            sleep(1)
             next_btn = '#under_area > form > input[type=hidden]:nth-child(2)'
             driver.find_element_by_css_selector(next_btn).submit()
         except:
+            sleep(1)
             fin_btn = '#question_td > form:nth-child(4) > input.btn.btn-return.btn-return-units'
             driver.find_element_by_css_selector(fin_btn).submit()
             break
