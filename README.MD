@@ -3,7 +3,7 @@
 ## How to use
 - `git clone https://github.com/Re-taro/ngi-buster.git`を実行します
 - `pip install -r requirements.txt`を実行します
-- 別途ChromeとChromedriverがインストルされていることが前提です
+- 別途ChromeとChromedriverがインストールされていることが前提です
 >driver_path = '/usr/bin/chromedriver'
 - main.pyの9行目のPATH部分をあなたのChromedriverのディレクトリに変更してください
 >driver.get('https://w5.linguaporta.jp/user/seibido/index.php')
