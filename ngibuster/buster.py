@@ -161,7 +161,7 @@ def Answer():
 
 
 
-if __name__ == '__main__':
+def main():
     for i in range(0, 3):
         try:
             login()
