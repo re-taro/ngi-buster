@@ -122,7 +122,7 @@ def Answer():
         print('選択肢: {}, {}, {}, {}, {}'.format(ans[0].get_attribute('value'),
                                                 ans[1].get_attribute('value'),
                                                 ans[2].get_attribute('value'),
-                                                ans[3].get_attribute('value'), 
+                                                ans[3].get_attribute('value'),
                                                 ans[4].get_attribute('value')))
         if ques.text not in memo:
             memo = mk_memo(ans, ques, memo)
