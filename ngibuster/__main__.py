@@ -1,3 +1,4 @@
+from buster import main
+
 if __name__ == "__main__":
-    import buster
-    buster.main()
+    main()
